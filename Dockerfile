@@ -21,10 +21,10 @@ RUN apt-get update && apt-get install -y transmission-cli \
 	bs1770gain \
 	nginx \
 	python3-pip \
-	webhook \
 	ruby-dev && \
 	pip3 install youtube-dl beets pylast requests pyacoustid && \
 	gem install transmission-rss
+# TODO: add webhook ubuntu package when it supports templates	
 
 # Install filebot
 # Template taken from: https://github.com/filebot/plugins/blob/master/docker/Dockerfile
