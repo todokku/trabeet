@@ -11,9 +11,6 @@ RUN mkdir -p /watch
 # Volumes to expose
 VOLUME ["/music", "/video", "/downloads", "/watch"]
 
-# Copy Binaries
-COPY bin/* /usr/bin/
-
 RUN apt-get update && apt-get install -y transmission-cli \
 	transmission-common \
 	transmission-daemon \
@@ -33,14 +30,3 @@ RUN apt-get update && apt-get install -y transmission-cli \
 COPY pkgs/filebot_4.7.9_amd64p.deb /opt/
 RUN dpkg -i /opt/filebot_4.7.9_amd64p.deb \
     && rm /opt/filebot_4.7.9_amd64p.deb
-
-# Add required config files
-COPY config/beets /root/.config/beets
-COPY config/transmission /root/.config/transmission-daemon
-COPY config/transmission-rss /root/.config/transmission-rss
-COPY config/filebot /root/.filebot
-COPY config/webhook /opt/webhook/
-COPY config/nginx /etc/nginx
-
-# Run start script (on build)
-CMD ["start"]
